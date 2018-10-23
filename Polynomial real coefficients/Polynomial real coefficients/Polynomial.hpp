@@ -7,8 +7,8 @@ class Polynomial {
 
 public:
 
-	Polynomial(std::vector<double> = {}, int = 0);
-	Polynomial(Polynomial&);
+	Polynomial(std::vector<double> = {}, int = -1);   //if all coefficients are 0 the degree is -1
+	Polynomial(const Polynomial&);
 
 	~Polynomial() {}
 
@@ -63,7 +63,7 @@ public:
 
 
 private:
-	std::vector<double> mCoef; //the vector of coefficients
+	std::vector<double> mCoeff; //the vector of coefficients
 	int mDegree; //degree of the polynomial
 
 
