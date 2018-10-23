@@ -1,2 +1,2 @@
-# PooLabProiect
-Polinom cu coeficienti numere reale
+# OOP Laboratory project
+Polynom with real coefficients.
