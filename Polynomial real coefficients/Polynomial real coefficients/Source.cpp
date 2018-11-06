@@ -8,10 +8,10 @@ int main() {
 
 	Polynomial p3;
 
-	p3 = p + p2;
+	std::cin >> p3;
 
 	
-	std::cout << p<<p2<<p3;
+	std::cout << (p3+p);
 
 	system("pause");
 	return 0;

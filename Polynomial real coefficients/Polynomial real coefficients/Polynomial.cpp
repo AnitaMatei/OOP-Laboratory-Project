@@ -341,62 +341,6 @@ std::istream& operator>>(std::istream& in, Polynomial& p) {
 	return in;
 }
 
-std::ifstream& operator>>(std::ifstream& fin, Polynomial& p) {
-
-	std::string tbr;
-	Polynomial temp;
-	fin >> tbr;
-	int i;
-
-	for (i = 1; i < tbr.length(); i++) {
-		if (tbr[i] == '+' || tbr[i] == '-') {
-			char token = tbr[i];
-			std::string tempStr = tbr.substr(0, tbr.find(token));
-			temp.mCoeff[0] = (atof(tempStr.c_str()));
-			tbr.erase(0, tempStr.length());
-			break;
-		}
-		else if (tbr[i] == '*')
-			break;
-	}
-
-	if (tbr.length() != 0 && tbr.find('*') == -1) {
-		temp.mCoeff[0] = atof(tbr.c_str());
-		tbr.erase(0, tbr.length());
-	}
-
-	while (tbr.length() > 0) {
-		std::string tempStr = tbr.substr(0, tbr.find("*x"));
-		if (tbr[tempStr.length() + 2] != '^') {
-			temp.mCoeff.push_back(atof(tempStr.c_str()));
-			tbr.erase(0, tempStr.length() + 2);
-		}
-		else {
-			std::string tempTbr = tbr;
-			tempTbr.erase(0, 1);
-			std::string degreeString;
-			if (tempTbr.find("+") == -1 && tempTbr.find("-") == -1) {
-				degreeString = tbr.substr(tempStr.length() + 3, -1);
-			}
-			else {
-				int tokenPos = tempTbr.find("+") < tempTbr.find("-") ? tempTbr.find("+") : tempTbr.find("-");
-				degreeString = tbr.substr(tempStr.length() + 3, tokenPos - 3);
-			}
-
-			int x = atof(degreeString.c_str());
-			for (int i = temp.mCoeff.size(); i < x; i++) {
-				temp.mCoeff.push_back(0);
-			}
-			temp.mCoeff.push_back(atof(tempStr.c_str()));
-			tbr.erase(0, tempStr.length() + degreeString.length() + 3);
-		}
-	}
-	temp.mDegree = temp.mCoeff.size() - 1;
-	p = temp;
-
-	return fin;
-}
-
 std::ostream & operator<<(std::ostream & out, const Polynomial & p)
 {
 	if (p.mCoeff[0] != 0)
@@ -417,27 +361,6 @@ std::ostream & operator<<(std::ostream & out, const Polynomial & p)
 	}
 	out << std::endl;
 	return out;
-}
-
-std::ofstream& operator<<(std::ofstream& fout, const Polynomial& p) {
-	if (p.mCoeff[0] != 0)
-	{
-		if (p.mCoeff[0] > 0)
-			fout << "+";
-		fout << p.mCoeff[0];
-	}
-	for (int i = 1; i <= p.mDegree; i++) {
-		if (p.mCoeff[i] != 0) {
-			if (p.mCoeff[i] > 0)
-				fout << "+";
-
-			fout << p.mCoeff[i] << "*x";
-			if (i > 1)
-				fout << "^" << i;
-		}
-	}
-	fout << std::endl;
-	return fout;
 }
 
 std::string Polynomial::toString()
