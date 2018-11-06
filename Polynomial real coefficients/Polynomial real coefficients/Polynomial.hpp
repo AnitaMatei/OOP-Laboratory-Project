@@ -9,7 +9,7 @@
 class Polynomial {
 public:
 
-	Polynomial(std::vector<double> = {0}, int = 0);   //the default polynomial is 0
+	Polynomial(const std::vector<double> = {0}, const int = 0);   //the default polynomial is 0
 	Polynomial(const Polynomial&);
 
 	~Polynomial() {}
@@ -62,7 +62,7 @@ public:
 	friend bool operator!=(const double&, const Polynomial&);
 
 	friend std::istream& operator>>(std::istream&, Polynomial&); //friend so that i can call cin>>p1 rather than p1>>cin
-	friend std::ifstream& operator>>(std::ifstream&, Polynomial&); //friend so that i can call cin>>p1 rather than p1>>cin
+	friend std::ifstream& operator>>(std::ifstream&, Polynomial&);
 
 	friend std::ostream& operator<<(std::ostream&, const Polynomial&);
 	friend std::ofstream& operator<<(std::ofstream&, const Polynomial&);

@@ -1,7 +1,7 @@
 #include "Polynomial.hpp"
 
 
-Polynomial::Polynomial(std::vector<double> coeff, int degree) {
+Polynomial::Polynomial(const std::vector<double> coeff, const int degree) {
 	mCoeff = coeff;
 	mDegree = degree;
 }
@@ -245,7 +245,7 @@ double& Polynomial::operator[](const int& index) {
 	if (index > mDegree)
 		return mCoeff[mDegree];
 	else
-	return mCoeff[index];
+		return mCoeff[index];
 }
 
 bool Polynomial::operator==(const Polynomial& p) {
@@ -304,14 +304,14 @@ std::istream& operator>>(std::istream& in, Polynomial& p) {
 			break;
 	}
 
-	if (tbr.length() != 0 && tbr.find('*') ==-1) {		//if we have only a monomial of degree 0
+	if (tbr.length() != 0 && tbr.find('*') == -1) {		//if we have only a monomial of degree 0
 		temp.mCoeff[0] = atof(tbr.c_str());
 		tbr.erase(0, tbr.length());
 	}
 
-	while(tbr.length()>0) {										//here we search for the monomials of degree 1 or higher
+	while (tbr.length() > 0) {										//here we search for the monomials of degree 1 or higher
 		std::string tempStr = tbr.substr(0, tbr.find("*x"));
-		if (tbr[tempStr.length() + 2]!='^') {					//if we have a monomial of degree 1 (ie we dont have ^n after *x)
+		if (tbr[tempStr.length() + 2] != '^') {					//if we have a monomial of degree 1 (ie we dont have ^n after *x)
 			temp.mCoeff.push_back(atof(tempStr.c_str()));
 			tbr.erase(0, tempStr.length() + 2);
 		}
@@ -324,7 +324,7 @@ std::istream& operator>>(std::istream& in, Polynomial& p) {
 			}
 			else {
 				int tokenPos = tempTbr.find("+") < tempTbr.find("-") ? tempTbr.find("+") : tempTbr.find("-");		//the position of the next sign, be it - or +
-				degreeString = tbr.substr(tempStr.length() + 3, tokenPos-3);
+				degreeString = tbr.substr(tempStr.length() + 3, tokenPos - 3);
 			}
 
 			int x = atof(degreeString.c_str());
@@ -332,10 +332,10 @@ std::istream& operator>>(std::istream& in, Polynomial& p) {
 				temp.mCoeff.push_back(0);						//if we jump from degree 3 to degree i>4, we have to push back some values of 0
 			}
 			temp.mCoeff.push_back(atof(tempStr.c_str()));
-			tbr.erase(0, tempStr.length() + degreeString.length()+ 3);			//keep deleting from the string you read
+			tbr.erase(0, tempStr.length() + degreeString.length() + 3);			//keep deleting from the string you read
 		}
 	}
-	temp.mDegree = temp.mCoeff.size()-1;
+	temp.mDegree = temp.mCoeff.size() - 1;
 	p = temp;
 
 	return in;
@@ -348,9 +348,9 @@ std::ifstream& operator>>(std::ifstream& fin, Polynomial& p) {
 	fin >> tbr;
 	int i;
 
-	for (i = 1; i < tbr.length(); i++) {			
+	for (i = 1; i < tbr.length(); i++) {
 		if (tbr[i] == '+' || tbr[i] == '-') {
-			char token = tbr[i];						
+			char token = tbr[i];
 			std::string tempStr = tbr.substr(0, tbr.find(token));
 			temp.mCoeff[0] = (atof(tempStr.c_str()));
 			tbr.erase(0, tempStr.length());
@@ -360,35 +360,35 @@ std::ifstream& operator>>(std::ifstream& fin, Polynomial& p) {
 			break;
 	}
 
-	if (tbr.length() != 0 && tbr.find('*') == -1) {		
+	if (tbr.length() != 0 && tbr.find('*') == -1) {
 		temp.mCoeff[0] = atof(tbr.c_str());
 		tbr.erase(0, tbr.length());
 	}
 
-	while (tbr.length()>0) {										
+	while (tbr.length() > 0) {
 		std::string tempStr = tbr.substr(0, tbr.find("*x"));
-		if (tbr[tempStr.length() + 2] != '^') {					
+		if (tbr[tempStr.length() + 2] != '^') {
 			temp.mCoeff.push_back(atof(tempStr.c_str()));
 			tbr.erase(0, tempStr.length() + 2);
 		}
-		else {														
-			std::string tempTbr = tbr;			
+		else {
+			std::string tempTbr = tbr;
 			tempTbr.erase(0, 1);
-			std::string degreeString;						
-			if (tempTbr.find("+") == -1 && tempTbr.find("-") == -1) {			
+			std::string degreeString;
+			if (tempTbr.find("+") == -1 && tempTbr.find("-") == -1) {
 				degreeString = tbr.substr(tempStr.length() + 3, -1);
 			}
 			else {
-				int tokenPos = tempTbr.find("+") < tempTbr.find("-") ? tempTbr.find("+") : tempTbr.find("-");		
+				int tokenPos = tempTbr.find("+") < tempTbr.find("-") ? tempTbr.find("+") : tempTbr.find("-");
 				degreeString = tbr.substr(tempStr.length() + 3, tokenPos - 3);
 			}
 
 			int x = atof(degreeString.c_str());
 			for (int i = temp.mCoeff.size(); i < x; i++) {
-				temp.mCoeff.push_back(0);					
+				temp.mCoeff.push_back(0);
 			}
 			temp.mCoeff.push_back(atof(tempStr.c_str()));
-			tbr.erase(0, tempStr.length() + degreeString.length() + 3);			
+			tbr.erase(0, tempStr.length() + degreeString.length() + 3);
 		}
 	}
 	temp.mDegree = temp.mCoeff.size() - 1;
@@ -442,8 +442,8 @@ std::ofstream& operator<<(std::ofstream& fout, const Polynomial& p) {
 
 std::string Polynomial::toString()
 {
-	std::string temp="";
-	temp+=std::to_string(mCoeff[0]);
+	std::string temp = "";
+	temp += std::to_string(mCoeff[0]);
 	for (int i = 1; i <= mDegree; i++) {
 		if (mCoeff[i] != 0) {
 			if (mCoeff[i] > 0)
