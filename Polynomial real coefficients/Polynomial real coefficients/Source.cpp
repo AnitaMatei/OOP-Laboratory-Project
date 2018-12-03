@@ -8,7 +8,7 @@ int main() {
 
 	Polynomial p3;
 
-	p3 = p + p2;
+	p3 = p + (-p2);
 
 	
 	std::cout << p<<p2<<p3;
