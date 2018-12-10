@@ -1,8 +1,8 @@
 #include "Activity.hpp"
 
-Activity::Activity(Room & location, Person & owner, std::string description):
-	mDescription(description)
+Activity::Activity(Room *location, Person *owner, std::string description):
+	mDescription(description),
+	mLocation(location),
+	mOwner(owner)
 {
-	mLocation = &location;
-	mOwner = &owner;
 }

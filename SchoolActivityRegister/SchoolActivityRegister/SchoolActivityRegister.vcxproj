@@ -116,8 +116,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Activity.cpp" />
+    <ClCompile Include="ActivityRepository.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="PersonRepository.cpp" />
+    <ClCompile Include="Repository.cpp" />
     <ClCompile Include="Role.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="RoomRepository.cpp" />
@@ -127,8 +129,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Activity.hpp" />
+    <ClInclude Include="ActivityRepository.hpp" />
     <ClInclude Include="Person.hpp" />
     <ClInclude Include="PersonRepository.hpp" />
+    <ClInclude Include="Repository.hpp" />
     <ClInclude Include="Role.hpp" />
     <ClInclude Include="Room.hpp" />
     <ClInclude Include="RoomRepository.hpp" />

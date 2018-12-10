@@ -6,20 +6,19 @@
 #include <vector>
 #include <algorithm>
 #include "Room.hpp"
+#include "Repository.hpp"
 
-class RoomRepository {
+
+class RoomRepository : public Repository<Room> {
 
 public:
 	RoomRepository() {}
 	
-	void addRoom(Room*);
 	Room* findByName(const std::string&);
 	std::vector<Room*> findRoomsOfType(Room::RoomType);
 	std::vector<Room*> findRoomsOfMinCapacity(const unsigned int);
-	void deleteRoom(Room*);
 
 private:
-	std::vector<Room*> rooms;
 
 };
 

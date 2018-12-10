@@ -1,20 +1,23 @@
 #include "Person.hpp"
 
-Person::Person(std::vector<int>CNP, std::string firstName, std::string lastName, std::string email): 
+Person::Person(const std::vector<Role*> roles, std::vector<int>CNP, std::string firstName, std::string lastName, std::string email):
+																									mRoles(roles),
+																									mCNP(CNP),
 																									mFirstName(firstName),
 																									mLastName(lastName),
 																									mEmail(email)
 {
-	mCNP = CNP;
 }
 
-Person::Person(const Person & p)
+Person::Person(const Person *person, const std::vector<Role*> roles):
+																	mCNP(person->mCNP),
+																	mFirstName(person->mFirstName),
+																	mLastName(person->mLastName),
+																	mEmail(person->mEmail),
+																	mRoles(roles)
 {
-	mCNP = p.mCNP;
-	mFirstName = p.mFirstName;
-	mLastName = p.mLastName;
-	mEmail = p.mEmail;
 }
+
 void Person::addRole(Role * role)
 {
 	mRoles.push_back(role);
