@@ -7,11 +7,11 @@ void PersonRepository::addPerson(Person* person, std::vector<Role*> roles)
 		persons[persons.size() - 1]->addRole(roles[i]);
 }
 
-Person& PersonRepository::findByFullName(const std::string& firstName, const std::string& lastName)
+Person* PersonRepository::findByFullName(const std::string& firstName, const std::string& lastName)
 {
 	for (int i = 0; i < persons.size(); i++) {
 		if (!(persons[i]->getFirstName()).compare(firstName) && !(persons[i]->getLastName()).compare(lastName))
-			return *persons[i];
+			return persons[i];
 	}
 }
 

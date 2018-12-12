@@ -58,7 +58,7 @@ int main() {
 	pr.addPerson(new Person({ 2 }, "Stefan", "Rapeanu", "sr@sr.sr"), { new TeacherRole({ "POO" }),new StudentRole(501, "Ceva", 3) });
 
 	vector<Person*> personsIn252 = pr.findPersonsOfRole(Role::STUDENT_ROLE);
-	pr.deletePerson(&pr.findByFullName("Anita", "Matei"));
+	pr.deletePerson(pr.findByFullName("Anita", "Matei"));
 
 
 

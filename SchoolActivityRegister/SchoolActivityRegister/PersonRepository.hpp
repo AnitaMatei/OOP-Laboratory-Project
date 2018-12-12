@@ -16,7 +16,7 @@ public:
 	PersonRepository() {}
 
 	void addPerson(Person*, std::vector<Role*>);	//a person can have multiple roles so we ask for a vector
-	Person& findByFullName(const std::string&, const std::string&);
+	Person* findByFullName(const std::string&, const std::string&);
 	std::vector<Person*> findPersonsOfRole(Role::RoleType);
 	std::vector<Person*> findStudentsInGroup(const int);
 	void deletePerson(Person*);
