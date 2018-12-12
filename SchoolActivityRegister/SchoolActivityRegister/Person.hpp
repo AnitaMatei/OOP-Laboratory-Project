@@ -10,8 +10,8 @@
 
 class Person {
 public:
-	Person(const std::vector<int> = {}, const std::string="", const std::string="", const std::string="");
-	Person(const Person&);
+	Person(const std::vector<Role*>, const std::vector<int> = {}, const std::string="", const std::string="", const std::string="");
+	Person(const Person*, const std::vector<Role*>);
 	/*
 	void addTeacherRole(std::vector<std::string>);
 	void addStudentRole(const int = 0, const std::string = "", const int = 0);

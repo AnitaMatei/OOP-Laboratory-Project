@@ -16,7 +16,6 @@ private:
 	Room* mLocation;
 	Person* mOwner;
 	std::string mDescription;
-
 };
 
 
