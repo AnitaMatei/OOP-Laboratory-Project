@@ -10,7 +10,7 @@
 class Activity {
 
 public:
-	Activity(Room&, Person&, const std::string);
+	Activity(Room*, Person*, const std::string);
 
 private:
 	Room* mLocation;
