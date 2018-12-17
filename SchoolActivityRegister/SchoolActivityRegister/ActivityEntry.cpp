@@ -25,3 +25,8 @@ const int ActivityEntry::getGrade() const
 {
 	return mGrade;
 }
+
+const bool ActivityEntry::getPresence() const
+{
+	return mPresence;
+}

@@ -76,12 +76,13 @@ int main() {
 
 	ar.add(new DidacticActivity(rr.findByName("Laborator 331"), pr.findByFullName("Stefan", "Rapeanu"), "Laborator POO 252"));
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laborator POO 252"))->startActivity(pr.findStudentsInGroup(252), { true,false });
-	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laborator POO 252"))->addGrade("Anita", "Matei", 9);
+	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laborator POO 252"))->addGrade("Anita", "Matei", 6);
 
 
 
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laborator POO 252"))->endActivity(studentRegister);
 
+	cout << studentRegister;
 
 	system("pause");
 	return 0;

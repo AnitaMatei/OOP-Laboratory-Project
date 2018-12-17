@@ -13,6 +13,7 @@ public:
 
 	const Person* getPerson() const;
 	const int getGrade() const;
+	const bool getPresence() const;
 
 private:
 	bool mPresence;

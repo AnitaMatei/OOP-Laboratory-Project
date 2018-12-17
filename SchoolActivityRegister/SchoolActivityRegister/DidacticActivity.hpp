@@ -4,6 +4,7 @@
 #include "Activity.hpp"
 #include "ActivityEntry.hpp"
 #include "StudentRegister.hpp"
+#include <iostream>
 
 class DidacticActivity : public Activity{
 public:
