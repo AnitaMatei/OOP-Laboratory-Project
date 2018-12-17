@@ -40,16 +40,6 @@ int main() {
 
 	StudentRegister studentRegister;
 
-
-	vector<Room*> rooms;
-	rooms.push_back(new Room("Amfiteatru Haret", 100,Room::AMPHITHEATER_ROOM));
-	rooms.push_back(new Room("Amfiteatru Pompeiu", 50,Room::AMPHITHEATER_ROOM));
-	rooms.push_back(new Room("Lab 310", 30,Room::LABORATORY_ROOM));
-
-	StudentRole *sr=new StudentRole(252, "CTI", 7);
-	TeacherRole *tr=new TeacherRole({ "POO" });
-	StudentRole *sr2 = new StudentRole(501, "Ceva", 3);
-
 	PersonRepository pr;
 
 	pr.add(new Person({ new StudentRole(252, "CTI", 7) } ,{ 1 }, "Anita", "Matei", "chidosir94@gmail.com"));
@@ -61,26 +51,32 @@ int main() {
 	vector<Person*> students = pr.findStudentsInGroup(252);
 
 	for (int i = 0; i < students.size(); i++) {
-		StudentRole* temp = dynamic_cast<StudentRole*>(students[i]->getStudentRole());
-		studentRegister.addToRegister(temp, { "Laborator POO 252" });
+		studentRegister.addToRegister(students[i], { "Laborator POO 252" });
 	}
 
 	
 	RoomRepository rr;
 
 	rr.add(new Room("Laborator 331", 25,Room::LABORATORY_ROOM));
+	rr.add(new Room("Amfiteatru Pompeiu", 50, Room::AMPHITHEATER_ROOM));
+	rr.add(new Room("Amfiteatru Haret", 100, Room::AMPHITHEATER_ROOM));
 
 
 
 	ActivityRepository ar;
 
 	ar.add(new DidacticActivity(rr.findByName("Laborator 331"), pr.findByFullName("Stefan", "Rapeanu"), "Laborator POO 252"));
+	ar.add(new DidacticActivity(rr.findByName("Amfiteatru Haret"), pr.findByFullName("Stefan", "Rapeanu"), "Curs POO CTI"));
+
+	rr.findByName("Laborator 331")->setAvailability(false);
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laborator POO 252"))->startActivity(pr.findStudentsInGroup(252), { true,false });
+	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Curs POO CTI"))->startActivity(pr.findStudentsInGroup(252), { true,true });
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laborator POO 252"))->addGrade("Anita", "Matei", 6);
 
 
 
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laborator POO 252"))->endActivity(studentRegister);
+	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Curs POO CTI"))->endActivity(studentRegister);
 
 	cout << studentRegister;
 

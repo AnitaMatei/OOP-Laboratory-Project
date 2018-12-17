@@ -13,8 +13,8 @@ public:
 	Activity(Room*, Person*, const std::string);
 	virtual ~Activity(){}
 	
-	virtual void startActivity() {}
 	const std::string getDescription()const;
+	Room* getLocation() const;
 
 protected:
 	Room* mLocation;

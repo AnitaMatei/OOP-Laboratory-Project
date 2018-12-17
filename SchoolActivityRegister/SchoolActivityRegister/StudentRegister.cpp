@@ -1,11 +1,12 @@
 #include "StudentRegister.hpp"
 
-void StudentRegister::addToRegister(StudentRole *studentRole, subjectNames subjects)
+void StudentRegister::addToRegister(Person *studentRole, subjectNames subjects)
 {
-	mStudents.push_back(studentRole);
+	mStudents.push_back(dynamic_cast<StudentRole*>(studentRole->getStudentRole()));
 	mSubjects.push_back(subjects);
+	mStudentNames.push_back(studentRole->getFirstName() + " " + studentRole->getLastName());
 
-	std::cout << "A student has been added to the register with the subjects: ";
+	std::cout <<mStudentNames[mStudentNames.size()-1]<< " has been added to the register with the subjects: ";
 
 	grades tempGrades;
 	presences tempPresences;
@@ -54,7 +55,7 @@ void StudentRegister::addEntries(const std::vector<ActivityEntry*> &activityEntr
 std::ostream & operator<<(std::ostream &out, StudentRegister &studentRegister)
 {
 	for (int i = 0; i < studentRegister.mStudents.size(); i++) {
-		out << "Student nr. " << i << " has the following grades and presences at these subjects: ";
+		out << studentRegister.mStudentNames[i] << " has the following grades and presences at these subjects: ";
 		for (int j = 0; j < studentRegister.mSubjects[i].size(); j++) {
 			out << std::endl << '\t' << studentRegister.mSubjects[i][j] + ":" << std::endl;
 			out << '\t' << '\t' << "Grades: ";

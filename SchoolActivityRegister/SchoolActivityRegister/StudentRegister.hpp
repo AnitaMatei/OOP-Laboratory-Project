@@ -16,7 +16,7 @@ class StudentRegister {
 public:
 	StudentRegister() {}
 
-	void addToRegister(StudentRole*, subjectNames);
+	void addToRegister(Person*, subjectNames);
 
 	void addEntries(const std::vector<ActivityEntry*>&, const std::string);
 
@@ -24,9 +24,11 @@ public:
 
 private:
 	std::vector<StudentRole*> mStudents;
+	std::vector<std::string> mStudentNames;
 	std::vector<subjectNames> mSubjects;
 	std::vector<grades> mGrades;
 	std::vector<presences> mPresences;
+	
 };
 
 

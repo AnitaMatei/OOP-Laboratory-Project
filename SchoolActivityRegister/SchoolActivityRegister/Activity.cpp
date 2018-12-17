@@ -11,3 +11,8 @@ const std::string Activity::getDescription() const
 {
 	return mDescription;
 }
+
+Room * Activity::getLocation() const
+{
+	return mLocation;
+}

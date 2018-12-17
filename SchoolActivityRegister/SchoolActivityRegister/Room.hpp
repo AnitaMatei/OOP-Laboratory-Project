@@ -16,12 +16,18 @@ public:
 
 	Room(const std::string, const unsigned int, const RoomType);
 
-	const std::string& getName() const;
+
+	const std::string getName() const;
 	const unsigned int getCapacity() const;
 	const RoomType getType() const;
-
+	const bool isUseable() const;
+	const void setUseable(bool);
+	const bool isFree() const;
+	const void setAvailability(bool);
 
 protected:
+	bool mUseable;		//if the room has problems or not
+	bool mAvailable;			//if the room is used by another activity
 	std::string mName;
 	unsigned int mCapacity;
 	RoomType mType;
