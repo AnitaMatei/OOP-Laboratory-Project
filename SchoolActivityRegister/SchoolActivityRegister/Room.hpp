@@ -14,7 +14,7 @@ public:
 				SEMINARY_ROOM
 	};
 
-	Room(const std::string, const unsigned int);
+	Room(const std::string, const unsigned int, const RoomType);
 
 	const std::string& getName() const;
 	const unsigned int getCapacity() const;

@@ -6,3 +6,8 @@ Activity::Activity(Room *location, Person *owner, std::string description):
 	mOwner(owner)
 {
 }
+
+const std::string Activity::getDescription() const
+{
+	return mDescription;
+}

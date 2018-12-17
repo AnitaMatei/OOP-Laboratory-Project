@@ -116,7 +116,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Activity.cpp" />
+    <ClCompile Include="ActivityEntry.cpp" />
     <ClCompile Include="ActivityRepository.cpp" />
+    <ClCompile Include="DidacticActivity.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="PersonRepository.cpp" />
     <ClCompile Include="Repository.cpp" />
@@ -124,18 +126,22 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="RoomRepository.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="StudentRegister.cpp" />
     <ClCompile Include="StudentRole.cpp" />
     <ClCompile Include="TeacherRole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Activity.hpp" />
+    <ClInclude Include="ActivityEntry.hpp" />
     <ClInclude Include="ActivityRepository.hpp" />
+    <ClInclude Include="DidacticActivity.hpp" />
     <ClInclude Include="Person.hpp" />
     <ClInclude Include="PersonRepository.hpp" />
     <ClInclude Include="Repository.hpp" />
     <ClInclude Include="Role.hpp" />
     <ClInclude Include="Room.hpp" />
     <ClInclude Include="RoomRepository.hpp" />
+    <ClInclude Include="StudentRegister.hpp" />
     <ClInclude Include="StudentRole.hpp" />
     <ClInclude Include="TeacherRole.hpp" />
   </ItemGroup>

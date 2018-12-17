@@ -22,10 +22,8 @@ protected:
 };
 
 
-#endif //REPOSITORY_HPP
-
 template<typename Entity>
-inline Repository<Entity>::~Repository()
+Repository<Entity>::~Repository()
 {
 	for (int i = 0; i < mEntities.size(); i++) {
 		delete mEntities[i];
@@ -33,13 +31,15 @@ inline Repository<Entity>::~Repository()
 }
 
 template<typename Entity>
-inline void Repository<Entity>::add(Entity *entity)
+void Repository<Entity>::add(Entity *entity)
 {
 	mEntities.push_back(entity);
 }
 
 template<typename Entity>
-inline void Repository<Entity>::remove(Entity *entity)
+void Repository<Entity>::remove(Entity *entity)
 {
 	mEntities.erase(std::remove(mEntities.begin(), mEntities.end(), entity), mEntities.end());
 }
+
+#endif //REPOSITORY_HPP

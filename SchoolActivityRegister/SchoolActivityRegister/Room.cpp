@@ -1,7 +1,8 @@
 #include "Room.hpp"
 
-Room::Room(std::string name, unsigned int capacity) :mName(name),
-mCapacity(capacity)
+Room::Room(std::string name, unsigned int capacity, const RoomType type) :mName(name),
+mCapacity(capacity),
+mType(type)
 {
 }
 

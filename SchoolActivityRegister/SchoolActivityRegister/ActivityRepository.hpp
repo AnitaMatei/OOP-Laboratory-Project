@@ -9,11 +9,13 @@
 #include "Repository.hpp"
 
 class ActivityRepository : public Repository<Activity> {
+
 public:
 	ActivityRepository() {}
 
+	Activity* getActivityByDesc(const std::string);
 
-
+private:
 
 };
 

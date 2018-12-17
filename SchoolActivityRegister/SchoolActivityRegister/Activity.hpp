@@ -11,8 +11,12 @@ class Activity {
 
 public:
 	Activity(Room*, Person*, const std::string);
+	virtual ~Activity(){}
+	
+	virtual void startActivity() {}
+	const std::string getDescription()const;
 
-private:
+protected:
 	Room* mLocation;
 	Person* mOwner;
 	std::string mDescription;
