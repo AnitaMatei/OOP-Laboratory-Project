@@ -35,6 +35,27 @@ std::vector<Person*> PersonRepository:: findStudentsInGroup(const int group)
 	return studentsInGroup;
 }
 
+void PersonRepository::removeStudentByName(const std::string &firstName, const std::string &lastName)
+{
+	for (int i = 0; i < mEntities.size(); i++) {
+		if (mEntities[i]->getFirstName() == firstName && mEntities[i]->getLastName()==lastName) {
+			mEntities[i]->deleteStudentRole();
+			notify();
+			return;
+		}
+	}
+}
+
+void PersonRepository::addStudentRegister(StudentRegister *studentRegister)
+{
+	mObserver = studentRegister;
+}
+
+void PersonRepository::notify()
+{
+	mObserver->updateStudents();
+}
+
 
 int PersonRepository::getPersonCount()
 {

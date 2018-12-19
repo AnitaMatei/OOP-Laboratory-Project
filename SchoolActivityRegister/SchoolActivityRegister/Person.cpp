@@ -22,6 +22,15 @@ void Person::addRole(Role * role)
 {
 	mRoles.push_back(role);
 }
+void Person::deleteStudentRole()
+{
+	for (int i = 0; i < mRoles.size(); i++) {
+		if (mRoles[i]->getType() == Role::STUDENT_ROLE) {
+			delete mRoles[i];
+			mRoles.erase(mRoles.begin() + i, mRoles.begin() + i + 1);
+		}
+	}
+}
 const bool Person::isStudent() const
 {
 	for (int i = 0; i < mRoles.size(); i++) {
@@ -54,18 +63,19 @@ const int Person::getRoleCount() const
 {
 	return mRoles.size();
 }
-Role * Person::getStudentRole() const
+StudentRole * Person::getStudentRole() const
 {
 	for (int i = 0; i < mRoles.size(); i++)	{
 		if (mRoles[i]->getType() == Role::STUDENT_ROLE)
-			return mRoles[i];
+			return dynamic_cast<StudentRole*>(mRoles[i]);
 	}
+	return nullptr;
 }
-Role * Person::getTeacherRole() const
+TeacherRole * Person::getTeacherRole() const
 {
 	for (int i = 0; i < mRoles.size(); i++) {
 		if (mRoles[i]->getType() == Role::TEACHER_ROLE)
-			return mRoles[i];
+			return dynamic_cast<TeacherRole*>(mRoles[i]);
 	}
 }
 std::vector<Role*> Person::getRoles() const

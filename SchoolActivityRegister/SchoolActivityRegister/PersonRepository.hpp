@@ -8,6 +8,7 @@
 #include <string>
 #include <algorithm>
 #include "Repository.hpp"
+#include "StudentRegister.hpp"
 
 
 class PersonRepository : public Repository<Person> {
@@ -18,9 +19,15 @@ public:
 	std::vector<Person*> findPersonsOfRole(Role::RoleType);
 	std::vector<Person*> findStudentsInGroup(const int);
 
+	void removeStudentByName(const std::string&, const std::string&);
+
+	void addStudentRegister(StudentRegister*);
+
 	int getPersonCount();
 
 private:
+	void notify();
+	StudentRegister * mObserver;
 
 };
 

@@ -9,26 +9,19 @@
 
 class StudentRegister {
 
-	typedef std::vector<std::string> subjectNames;
-	typedef std::vector<std::vector<int>> grades;
-	typedef std::vector<int> presences;
+	// TODO observer pattern
 
 public:
 	StudentRegister() {}
 
-	void addToRegister(Person*, subjectNames);
-
+	void addToRegister(Person*);
 	void addEntries(const std::vector<ActivityEntry*>&, const std::string);
+	void updateStudents();
 
 	friend std::ostream& operator<<(std::ostream&, StudentRegister&);
 
 private:
-	std::vector<StudentRole*> mStudents;
-	std::vector<std::string> mStudentNames;
-	std::vector<subjectNames> mSubjects;
-	std::vector<grades> mGrades;
-	std::vector<presences> mPresences;
-	
+	std::vector<Person*> mStudents;
 };
 
 

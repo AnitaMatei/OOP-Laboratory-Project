@@ -1,53 +1,37 @@
 #include "StudentRegister.hpp"
 
-void StudentRegister::addToRegister(Person *studentRole, subjectNames subjects)
+void StudentRegister::addToRegister(Person *student)
 {
-	mStudents.push_back(dynamic_cast<StudentRole*>(studentRole->getStudentRole()));
-	mSubjects.push_back(subjects);
-	mStudentNames.push_back(studentRole->getFirstName() + " " + studentRole->getLastName());
-
-	std::cout <<mStudentNames[mStudentNames.size()-1]<< " has been added to the register with the subjects: ";
-
-	grades tempGrades;
-	presences tempPresences;
-	for (int i = 0; i < mSubjects[mSubjects.size() - 1].size(); i++) {
-		std::cout << mSubjects[mSubjects.size() - 1][i];
-		if (i < mSubjects[mSubjects.size() - 1].size() - 1) {
-			std::cout << ", ";
-		}
-
-		tempGrades.push_back({});
-		tempPresences.push_back(0);
-	}
-	std::cout << std::endl;
-	
-	mGrades.push_back(tempGrades);
-	mPresences.push_back(tempPresences);
+	mStudents.push_back(student);
 }
 
-void StudentRegister::addEntries(const std::vector<ActivityEntry*> &activityEntry, const std::string subjectName)
+void StudentRegister::addEntries(const std::vector<ActivityEntry*> &activityEntries, const std::string subjectName)
 {
-	for (int i = 0; i < activityEntry.size(); i++) {
-		int studentIndex = -1;
-		int subjectIndex = -1;
-		for (int j = 0; j < mStudents.size(); j++) {
-			if (mStudents[j] == activityEntry[i]->getPerson()->getStudentRole()) {
-				studentIndex = j;
+
+	std::vector<Discipline*> disciplines;
+	for (int i = 0; i < activityEntries.size(); i++) {
+		const Person* person = activityEntries[i]->getPerson();
+		disciplines = activityEntries[i]->getPerson()->getStudentRole()->getDisciplines();
+		for (int j = 0; j < disciplines.size(); j++) {
+			if (disciplines[j]->getSubjectName() == subjectName) {
+				if (activityEntries[i]->getGrade() != 0) {
+					disciplines[j]->addGrade(activityEntries[i]->getGrade());
+				}
+				if (activityEntries[i]->getPresence())
+					disciplines[j]->addPresence();
+				break;
 			}
 		}
+	}
+}
 
-		for (int k = 0; k < mSubjects[studentIndex].size(); k++) {
-			if (mSubjects[studentIndex][k] == subjectName) {
-				subjectIndex = k;
-			}
-		}
-
-
-		if (studentIndex != -1 && subjectIndex != -1) {
-			mGrades[studentIndex][subjectIndex].push_back(activityEntry[i]->getGrade());
-			if (activityEntry[i]->getPresence()) {
-				mPresences[studentIndex][subjectIndex]++;
-			}
+void StudentRegister::updateStudents()
+{
+	for (int i = 0; i < mStudents.size(); i++) {
+		if (mStudents[i]->getStudentRole() == nullptr) {
+			std::cout << mStudents[i]->getFirstName() + " " + mStudents[i]->getLastName() << " has been removed from the register as he isn't a student anymore." << std::endl;
+			mStudents.erase(mStudents.begin() + i);
+			return;
 		}
 	}
 }
@@ -55,14 +39,16 @@ void StudentRegister::addEntries(const std::vector<ActivityEntry*> &activityEntr
 std::ostream & operator<<(std::ostream &out, StudentRegister &studentRegister)
 {
 	for (int i = 0; i < studentRegister.mStudents.size(); i++) {
-		out << studentRegister.mStudentNames[i] << " has the following grades and presences at these subjects: ";
-		for (int j = 0; j < studentRegister.mSubjects[i].size(); j++) {
-			out << std::endl << '\t' << studentRegister.mSubjects[i][j] + ":" << std::endl;
+		out << studentRegister.mStudents[i]->getFirstName()+" "+ studentRegister.mStudents[i]->getLastName() << " has the following grades and presences at these subjects: ";
+		std::vector<Discipline*> disciplines = dynamic_cast<StudentRole*>(studentRegister.mStudents[i]->getStudentRole())->getDisciplines();
+		for (int j = 0; j < disciplines.size(); j++) {
+			out << std::endl << '\t' << disciplines[j]->getSubjectName() + ":" << std::endl;
 			out << '\t' << '\t' << "Grades: ";
-			for (int k = 0; k < studentRegister.mGrades[i][j].size(); k++) {
-				out << studentRegister.mGrades[i][j][k];
+			std::vector<int> grades = disciplines[j]->getGrades();
+			for (int k = 0; k < grades.size(); k++) {
+				out << grades[k]<<" ";
 			}
-			out << std::endl << '\t' << '\t' << "Presences: " << studentRegister.mPresences[i][j]<<std::endl;
+			out << std::endl << '\t' << '\t' << "Presences: " << disciplines[j]->getPresences()<<std::endl;
 		}
 	}
 	return out;

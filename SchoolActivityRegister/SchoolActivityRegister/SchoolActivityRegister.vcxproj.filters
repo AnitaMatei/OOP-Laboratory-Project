@@ -57,6 +57,12 @@
     <ClCompile Include="StudentRegister.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Discipline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DisciplineRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Activity.hpp">
@@ -96,6 +102,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="StudentRegister.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Discipline.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisciplineRepository.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

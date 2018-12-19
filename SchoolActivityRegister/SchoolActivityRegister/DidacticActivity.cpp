@@ -8,16 +8,25 @@ DidacticActivity::DidacticActivity(Room *location, Person *owner, std::string de
 
 void DidacticActivity::addGrade(const std::string firstName, const std::string lastName, const int grade)
 {	
+
 	if (onGoing) {
 		for (int i = 0; i < mActivityEntries.size(); i++) {
-			if (mActivityEntries[i]->getPerson()->getFirstName() == firstName && mActivityEntries[i]->getPerson()->getLastName() == lastName) {
-				std::cout << firstName + " " + lastName << " received a " << grade << "." << std::endl;
-				mActivityEntries[i]->addGrade(grade);
-				return;
+			bool present = mActivityEntries[i]->getPresence();
+			const Person* person= mActivityEntries[i]->getPerson();
+			if (person->getFirstName() == firstName && person->getLastName() == lastName) {
+				if (present) {
+					std::cout << firstName + " " + lastName << " received a " << grade << "." << std::endl;
+					mActivityEntries[i]->addGrade(grade);
+					return;
+				}
+				else {
+					std::cout << firstName + " " + lastName << " can't receive a grade because they isn't present." << std::endl;
+					return;
+				}
 			}
 		}
 	}
-	else {
+	else{
 		std::cout << firstName + " " + lastName << " can't receive a grade because the activity didn't start."<<std::endl;
 	}
 }

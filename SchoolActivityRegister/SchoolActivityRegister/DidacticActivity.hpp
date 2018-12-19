@@ -8,7 +8,6 @@
 
 class DidacticActivity : public Activity{
 public:
-
 	DidacticActivity(Room*, Person*, const std::string);
 	virtual ~DidacticActivity() {}
 	

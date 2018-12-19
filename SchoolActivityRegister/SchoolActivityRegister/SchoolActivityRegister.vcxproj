@@ -119,6 +119,8 @@
     <ClCompile Include="ActivityEntry.cpp" />
     <ClCompile Include="ActivityRepository.cpp" />
     <ClCompile Include="DidacticActivity.cpp" />
+    <ClCompile Include="Discipline.cpp" />
+    <ClCompile Include="DisciplineRepository.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="PersonRepository.cpp" />
     <ClCompile Include="Repository.cpp" />
@@ -135,6 +137,8 @@
     <ClInclude Include="ActivityEntry.hpp" />
     <ClInclude Include="ActivityRepository.hpp" />
     <ClInclude Include="DidacticActivity.hpp" />
+    <ClInclude Include="Discipline.hpp" />
+    <ClInclude Include="DisciplineRepository.hpp" />
     <ClInclude Include="Person.hpp" />
     <ClInclude Include="PersonRepository.hpp" />
     <ClInclude Include="Repository.hpp" />

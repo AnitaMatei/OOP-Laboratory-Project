@@ -9,6 +9,7 @@
 #include "StudentRole.hpp"
 
 class Person {
+
 public:
 	Person(const std::vector<Role*>, const std::vector<int> = {}, const std::string="", const std::string="", const std::string="");
 	Person(const Person*, const std::vector<Role*>);
@@ -22,14 +23,16 @@ public:
 	friend std::istream& operator>>(std::istream&, Person&);
 	friend std::ostream& operator<<(std::ostream&, Person&);
 
+	void deleteStudentRole();
+
 	const bool isStudent() const;
 	const bool isTeacher() const;
 	const std::string& getFirstName() const;
 	const std::string& getLastName() const;
 	const std::string& getEmail() const;
 	const int getRoleCount() const;
-	Role* getStudentRole() const;
-	Role* getTeacherRole() const;
+	StudentRole* getStudentRole() const;
+	TeacherRole* getTeacherRole() const;
 	std::vector<Role*> getRoles() const;
 
 protected:
@@ -38,6 +41,7 @@ protected:
 	std::string mLastName;
 	std::string mEmail;
 	std::vector<Role*> mRoles;
+
 };
 
 
