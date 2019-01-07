@@ -4,9 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Role.hpp"
 #include "TeacherRole.hpp"
 #include "StudentRole.hpp"
+#include "ServiceRole.hpp"
 
 class Person {
 
@@ -33,6 +33,7 @@ public:
 	const int getRoleCount() const;
 	StudentRole* getStudentRole() const;
 	TeacherRole* getTeacherRole() const;
+	ServiceRole* getServiceRole() const;
 	std::vector<Role*> getRoles() const;
 
 protected:

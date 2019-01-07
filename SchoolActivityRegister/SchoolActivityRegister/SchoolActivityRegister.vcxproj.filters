@@ -63,6 +63,12 @@
     <ClCompile Include="DisciplineRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MaintenanceActivity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceRole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Activity.hpp">
@@ -108,6 +114,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="DisciplineRepository.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MaintenanceActivity.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceRole.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

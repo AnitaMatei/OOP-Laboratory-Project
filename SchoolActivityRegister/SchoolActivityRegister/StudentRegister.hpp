@@ -9,8 +9,6 @@
 
 class StudentRegister {
 
-	// TODO observer pattern
-
 public:
 	StudentRegister() {}
 

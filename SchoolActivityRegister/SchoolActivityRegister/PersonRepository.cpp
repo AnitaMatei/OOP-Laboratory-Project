@@ -46,7 +46,7 @@ void PersonRepository::removeStudentByName(const std::string &firstName, const s
 	}
 }
 
-void PersonRepository::addStudentRegister(StudentRegister *studentRegister)
+void PersonRepository::addObserver(StudentRegister *studentRegister)
 {
 	mObserver = studentRegister;
 }

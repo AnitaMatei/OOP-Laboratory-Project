@@ -11,6 +11,7 @@
 #include "RoomRepository.hpp"
 #include "StudentRegister.hpp"
 #include "DisciplineRepository.hpp"
+#include "MaintenanceActivity.hpp"
 
 using namespace std;
 
@@ -44,7 +45,7 @@ int main() {
 	PersonRepository pr;
 	DisciplineRepository dr;
 
-	pr.addStudentRegister(&studentRegister);
+	pr.addObserver(&studentRegister);
 
 	dr.add(new Discipline("POO", Discipline::LABORATORY, "CTI", 252));
 	dr.add(new Discipline("POO", Discipline::COURSE, "CTI"));
@@ -53,6 +54,7 @@ int main() {
 	pr.add(new Person({ new StudentRole(252, "CTI", dr.getDisciplinesByGroup(252)) } ,{ 1 }, "Anita", "Matei", "chidosir94@gmail.com"));
 	pr.add(new Person({ new StudentRole(252,"CTI",dr.getDisciplinesByGroup(252)) } ,{ 1 }, "Coman", "Valentin", "cv@cv.cv"));
 	pr.add(new Person({ new TeacherRole({ "POO" }),new StudentRole(501, "Ceva", dr.getDisciplinesByGroup(501)) }, { 2 }, "Stefan", "Rapeanu", "sr@sr.sr"));
+	pr.add(new Person({ new ServiceRole("It dept") }, { 1 }, "Dragan", "Mihaita", "dsadasdsa"));
 
 
 
@@ -60,7 +62,6 @@ int main() {
 
 
 	vector<Person*> students = pr.findStudentsInGroup(252);
-
 	for (int i = 0; i < students.size(); i++) {
 		studentRegister.addToRegister(students[i]);
 	}
@@ -72,17 +73,24 @@ int main() {
 	rr.add(new Room("Amfiteatru Pompeiu", 50, Room::AMPHITHEATER_ROOM));
 	rr.add(new Room("Amfiteatru Haret", 100, Room::AMPHITHEATER_ROOM));
 
-
+	rr.findByName("Amfiteatru Haret")->setUseable(false);
 
 	ActivityRepository ar;
 
 	ar.add(new DidacticActivity(rr.findByName("Laborator 331"), pr.findByFullName("Stefan", "Rapeanu"), "Laboratory POO 252"));
 	ar.add(new DidacticActivity(rr.findByName("Amfiteatru Haret"), pr.findByFullName("Stefan", "Rapeanu"), "Course POO CTI"));
+	ar.add(new MaintenanceActivity(rr.findByName("Amfiteatru Haret"), pr.findByFullName("Dragan", "Mihaita"), "Fix Haret projector"));
 
 
 	rr.findByName("Laborator 331")->setAvailability(true);
 
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laboratory POO 252"))->startActivity(pr.findStudentsInGroup(252), { true,false });
+
+	dynamic_cast<MaintenanceActivity*>(ar.getActivityByDesc("Fix Haret projector"))->startActivity();
+	dynamic_cast<MaintenanceActivity*>(ar.getActivityByDesc("Fix Haret projector"))->fixRoom();
+	dynamic_cast<MaintenanceActivity*>(ar.getActivityByDesc("Fix Haret projector"))->endActivity();
+
+
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Course POO CTI"))->startActivity(pr.findStudentsInGroup(252), { true,true });
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laboratory POO 252"))->addGrade("Anita", "Matei", 6);
 	dynamic_cast<DidacticActivity*>(ar.getActivityByDesc("Laboratory POO 252"))->addGrade("Coman", "Valentin", 9);

@@ -21,7 +21,7 @@ public:
 
 	void removeStudentByName(const std::string&, const std::string&);
 
-	void addStudentRegister(StudentRegister*);
+	void addObserver(StudentRegister*);
 
 	int getPersonCount();
 

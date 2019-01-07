@@ -7,7 +7,7 @@
 class Role {
 public:
 	enum RoleType{STUDENT_ROLE,
-					TEACHER_ROLE};
+					TEACHER_ROLE,SERVICE_ROLE};
 	Role(RoleType type);
 	virtual ~Role() {}		//making it a polymorphic class to be able to use dynamic_cast<>
 

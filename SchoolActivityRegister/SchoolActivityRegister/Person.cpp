@@ -77,6 +77,15 @@ TeacherRole * Person::getTeacherRole() const
 		if (mRoles[i]->getType() == Role::TEACHER_ROLE)
 			return dynamic_cast<TeacherRole*>(mRoles[i]);
 	}
+	return nullptr;
+}
+ServiceRole * Person::getServiceRole() const
+{
+	for (int i = 0; i < mRoles.size(); i++) {
+		if (mRoles[i]->getType() == Role::SERVICE_ROLE)
+			return dynamic_cast<ServiceRole*>(mRoles[i]);
+	}
+	return nullptr;
 }
 std::vector<Role*> Person::getRoles() const
 {

@@ -18,6 +18,11 @@ const unsigned int Room::getCapacity() const
 	return mCapacity;
 }
 
+const void Room::addCapacity(const int additionalCapacity)
+{
+	mCapacity+=additionalCapacity;
+}
+
 const Room::RoomType Room::getType() const
 {
 	return mType;
